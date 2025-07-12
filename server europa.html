@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Europa Proyect - Promoción y Whitelist</title>
+<style>
+  /* RESET Y BASE */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #e0e0e0;
+    line-height: 1.7;
+    padding: 40px 20px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3 {
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: #00bcd4; /* azul celeste */
+    text-shadow: 0 0 6px #00bcd4cc;
+  }
+  h1 {
+    font-size: 2.8rem;
+  }
+  h2 {
+    font-size: 2.2rem;
+  }
+  h3 {
+    font-size: 1.8rem;
+  }
+  p, li, label {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #ccc;
+  }
+  a {
+    color: #00bcd4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #80deea;
+    text-decoration: underline;
+  }
+  section {
+    margin-bottom: 4rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3rem;
+  }
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  li {
+    margin-bottom: 0.7rem;
+  }
+  /* BOTONES DE ENLACES */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 350px;
+  }
+  .btn {
+    padding: 18px 32px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 14px;
+    color: white;
+    box-shadow: 0 6px 20px transparent;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  .btn-discord {
+    background-color: #7289da;
+    box-shadow: 0 6px 20px #7289daaa;
+  }
+  .btn-discord:hover {
+    background-color: #5b6eae;
+    box-shadow: 0 8px 26px #5b6eaecc;
+  }
+  .btn-twitter {
+    background-color: #521222;
+    box-shadow: 0 6px 20px #2b000daa;
+  }
+  .btn-twitter:hover {
+    background-color: #0d95e8;
+    box-shadow: 0 8px 26px #0d95e8cc;
+  }
+  .btn-facebook {
+    background-color: #1877F2;
+    box-shadow: 0 6px 20px #1877F2aa;
+  }
+  .btn-facebook:hover {
+    background-color: #145dbf;
+    box-shadow: 0 8px 26px #145dbfcc;
+  }
+  /* FORMULARIO */
+  form {
+    background: #1e1e1e;
+    padding: 30px 30px 40px 30px;
+    border-radius: 14px;
+    box-shadow: 0 0 20px #00bcd4aa;
+    border: 1px solid #00bcd4;
+  }
+  label.form-label {
+    display: block;
+    margin-top: 1.5rem;
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+    color: #80deea;
+    text-shadow: 0 0 4px #00bcd4bb;
+  }
+  input[type="text"], input[type="email"], input[type="number"], textarea {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1.1rem;
+    border: 1px solid #444;
+    border-radius: 10px;
+    font-family: inherit;
+    color: #e0e0e0;
+    background-color: #222;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, textarea:focus {
+    outline: none;
+    border-color: #00bcd4;
+    box-shadow: 0 0 10px #00bcd4aa;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  /* Preguntas */
+  .question {
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  .question p {
+    font-weight: 700;
+    color: #80deea;
+    text-shadow: 0 0 6px #00bcd4bb;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  /* Inputs radio */
+  label.radio-label {
+    display: block;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    color: #ddd;
+    font-size: 1.1rem;
+  }
+  input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #00bcd4;
+    cursor: pointer;
+  }
+  /* Botón submit */
+  button[type="submit"] {
+    margin-top: 2.5rem;
+    background-color: #00bcd4cc;
+    color: #121212;
+    border: none;
+    padding: 18px 36px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px #00bcd4cc;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  button[type="submit"]:hover {
+    background-color: #00acc1;
+    box-shadow: 0 8px 26px #00acc1dd;
+    color: #e0f7fa;
+  }
+  /* Notas y advertencias */
+  .warning, .note {
+    padding: 20px 25px;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-shadow: 0 0 3px #000000aa;
+    font-size: 1.1rem;
+  }
+  .warning {
+    background: #b00020;
+    color: #ffccd5;
+    border-left: 6px solid #ff4455;
+    box-shadow: 0 0 16px #ff4455aa;
+  }
+  .note {
+    background: #004d40;
+    color: #a7ffeb;
+    border-left: 6px solid #26a69a;
+    box-shadow: 0 0 16px #26a69aaa;
+  }
+  /* Imagen GIF */
+  .gif-container img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border: 3px solid #00bcd4;
+    border-radius: 14px;
+    box-shadow: 0 0 20px #00bcd4cc;
+    display: block;
+    margin-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Europa Proyect - Servidor de Roleplay</h1>
+
+  <section>
+    <p><strong>¡Bienvenido a Europa Proyect!</strong> Nuestro servidor está dedicado a ofrecer la mejor experiencia de roleplay serio y de calidad para toda la comunidad. Únete a nosotros y forma parte de una comunidad activa, con scripts personalizados, eventos constantes y un entorno inmersivo único.</p>
+    <p>Te invitamos a conocer nuestras características, participar en eventos y, si quieres unirte, completar la whitelist para asegurar el mejor nivel de juego.</p>
+  </section>
+
+  <section class="gif-container">
+    <img src="https://i.postimg.cc/2Sd87Cc6/europa.gif" alt="GIF Europa Proyect" />
+  </section>
+
+  <section>
+    <h2>Características y Scripts</h2>
+    <ul>
+      <li>Sistema avanzado de economía y trabajos.</li>
+      <li>Scripts personalizados para una experiencia única.</li>
+      <li>Roles variados: policía, médicos, criminales, y más.</li>
+      <li>Eventos mensuales con premios y sorpresas.</li>
+      <li>Soporte activo y comunidad colaborativa.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Eventos y Noticias</h2>
+    <p>Mantente al día con los últimos eventos del servidor, actualizaciones y noticias importantes. Nuestra comunidad siempre está en movimiento, y queremos que tú seas parte de cada paso.</p>
+  </section>
+
+  <section>
+    <h2>Enlaces de la Comunidad</h2>
+    <div class="buttons">
+      <button class="btn btn-discord" onclick="window.open('https://discord.gg/Qj29W2dx3y', '_blank')">Únete al Discord</button>
+      <button class="btn btn-twitter" onclick="window.open('https://www.tiktok.com/@europaproyectrp', '_blank')">Síguenos en Tiktok</button>
+    </div>
+  </section>
+
+  <section>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whitelist - Europa Proyect</title>
+  <style>
+    /* Reset y base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #00bcd4; /* cyan */
+      text-shadow: 0 0 4px #00bcd4aa;
+    }
+    h1 {
+      font-size: 2.4rem;
+      padding-bottom: 0.3rem;
+    }
+    p, li {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: #ccc;
+    }
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #80deea;
+      text-decoration: underline;
+    }
+    section {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 2rem;
+    }
+    /* Listas sin estilo predeterminado */
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ddd;
+    }
+    input[type="checkbox"], input[type="radio"] {
+      cursor: pointer;
+      accent-color: #00bcd4;
+    }
+    /* Formulario */
+    form {
+      background: #1e1e1e;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00bcd4aa;
+      border: 1px solid #00bcd4;
+    }
+    label.form-label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #80deea;
+      text-shadow: 0 0 3px #00bcd4bb;
+    }
+    input[type="text"], input[type="email"], input[type="number"], textarea {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 1rem;
+      border: 1px solid #444;
+      border-radius: 8px;
+      font-family: inherit;
+      color: #e0e0e0;
+      background-color: #222;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, textarea:focus {
+      outline: none;
+      border-color: #00bcd4;
+      box-shadow: 0 0 8px #00bcd4aa;
+      background-color: #2a2a2a;
+      color: #fff;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    button {
+      margin-top: 1.8rem;
+      background-color: #00bcd4;
+      color: #121212;
+      border: none;
+      padding: 14px 26px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px #00bcd4cc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    button:hover {
+      background-color: #00acc1;
+      box-shadow: 0 6px 18px #00acc1dd;
+      color: #e0f7fa;
+    }
+    /* Notas y advertencias */
+    .warning, .note {
+      padding: 16px 20px;
+      margin-bottom: 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-shadow: 0 0 2px #00000066;
+    }
+    .warning {
+      background: #b00020;
+      color: #ffccd5;
+      border-left: 5px solid #ff4455;
+      box-shadow: 0 0 10px #ff4455aa;
+    }
+    .note {
+      background: #004d40;
+      color: #a7ffeb;
+      border-left: 5px solid #26a69a;
+      box-shadow: 0 0 10px #26a69aaa;
+    }
+    /* Preguntas con checkbox estilo */
+    .question {
+      margin-bottom: 2.5rem;
+    }
+    .question p {
+      font-weight: 700;
+      color: #80deea;
+      text-shadow: 0 0 4px #00bcd4bb;
+    }
+    pre {
+      background: #2a2a2a;
+      color: #80deea;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: Consolas, Monaco, monospace;
+      overflow-x: auto;
+      user-select: text;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Whitelist – Europa Proyect</h1>
+<section>
+  <p><strong>¡Bienvenido al proceso de ingreso para Europa Proyect!</strong> Antes de unirte a nuestro servidor de roleplay, es esencial que comprendas y respetes nuestras normas. Este examen está diseñado para asegurar que todos los jugadores compartan una comprensión común del roleplay serio y de calidad.</p>
+</section>
+
+<!-- GIF animado agregado -->
+<img 
+  src="https://i.postimg.cc/2Sd87Cc6/europa.gif" 
+  alt="GIF Europa Proyect" 
+  style="
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border: 2px solid #00bcd4;
+    border-radius: 12px;
+    box-shadow: 0 0 12px #00bcd4aa;
+    display: block;
+    margin: 0 0 20px 0;
+  "
+/>
+</section>
+
+  <section class="warning">
+    <strong>Advertencia:</strong><br />
+    Hacer copy-paste de respuestas de otros usuarios o de páginas externas será motivo de rechazo permanente.
+  </section>
+
+  <section>
+    <h2>Instrucciones</h2>
+    <ul>
+      <li>Puedes encontrar todas las respuestas en nuestra normativa. Por favor, estúdiala antes de responder.</li>
+      <li><strong>No puedes fallar ninguna pregunta de nuestra whitelist. Si fallas una pregunta o más, serás rechazado.</strong></li>
+    </ul>
+  </section>    <button type="button" id="discordBtn" style="
+  background-color: #7289da; 
+  color: white; 
+  border: none; 
+  padding: 12px 24px; 
+  font-size: 1rem; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px #7289daaa;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+">
+  Unete al Discord
+</button>
+
+<script>
+  document.getElementById('discordBtn').addEventListener('click', () => {
+    window.open('https://discord.gg/Qj29W2dx3y', '_blank');
+  });
+
+  const btn = document.getElementById('discordBtn');
+  btn.addEventListener('mouseenter', () => {
+    btn.style.backgroundColor = '#5b6eae';
+    btn.style.boxShadow = '0 6px 18px #5b6eaecc';
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.backgroundColor = '#7289da';
+    btn.style.boxShadow = '0 4px 12px #7289daaa';
+  });
+</script>
+
+  <section>
+    <h2>Formulario de Whitelist</h2>
+    <form id="whitelistForm" onsubmit="return handleSubmit(event)">
+      <label for="email" class="form-label">Correo (Email):</label>
+      <input type="email" id="email" name="email" required placeholder="tu@email.com" />
+
+      <label for="discord" class="form-label">Usuario de Discord:</label>
+      <input type="text" id="discord" name="discord" required placeholder="Nombre#1234" pattern=".{3,}" title="Por favor, ingresa tu usuario de Discord sin caracteres especiales." />
+
+      <label for="age" class="form-label">¿Cuántos años tienes?</label>
+      <input type="number" id="age" name="age" required min="12" max="120" placeholder="Tu edad" />
+
+      <p><em>Nota: No utilices símbolos o caracteres especiales en tu nombre de Discord, ya que podría dificultar el contacto para informarte sobre el resultado.</em></p>
+
+      <h3>Preguntas del Examen</h3>
+
+      <div class="question">
+        <p>1. Selecciona una situación donde se genere Metagaming.</p>
+        <label><input type="radio" name="q1" value="A" required /> A) Usar información obtenida fuera del juego para influir en decisiones dentro del juego.</label><br />
+        <label><input type="radio" name="q1" value="B" /> B) Actuar sin tener en cuenta el contexto del personaje.</label><br />
+        <label><input type="radio" name="q1" value="C" /> C) Ambas anteriores.</label>
+      </div>
+
+      <div class="question">
+        <p>2. ¿Qué es Powergaming?</p>
+        <label><input type="radio" name="q2" value="A" required /> A) Forzar acciones que no serían posibles en la vida real.</label><br />
+        <label><input type="radio" name="q2" value="B" /> B) Ignorar las consecuencias de las acciones del personaje.</label><br />
+        <label><input type="radio" name="q2" value="C" /> C) Ambas anteriores.</label>
+      </div>
+
+      <div class="question">
+        <p>3. Valorar tu vida es la norma más importante del roleplay. ¿Por qué?</p>
+        <label><input type="radio" name="q3" value="A" required /> A) Porque el personaje debe actuar de manera realista.</label><br />
+        <label><input type="radio" name="q3" value="B" /> B) Porque el personaje debe priorizar su supervivencia.</label><br />
+        <label><input type="radio" name="q3" value="C" /> C) Ambas anteriores.</label>
+      </div>
+
+      <div class="question">
+        <p>4. Si me apuntan con un arma, ¿qué debo hacer?</p>
+        <label><input type="radio" name="q4" value="A" required /> A) Valorar mi vida y cooperar en todo momento.</label><br />
+        <label><input type="radio" name="q4" value="B" /> B) Resistirme y tratar de escapar.</label><br />
+        <label><input type="radio" name="q4" value="C" /> C) Ignorar la amenaza.</label>
+      </div>
+
+      <div class="question">
+        <p>5. ¿Puedo usar la expresión "musculo" para referirme a teclas? ¿Cómo le dirías a un jugador qué tecla usar?</p>
+        <label><input type="radio" name="q5" value="A" required /> A) Sí, es una forma común de referirse a teclas.</label><br />
+        <label><input type="radio" name="q5" value="B" /> B) No, es considerado anti-rol. Deberías usar descripciones claras y apropiadas.</label>
+      </div>
+
+      <div class="question">
+        <p>6. ¿Qué es Fair-play?</p>
+        <label><input type="radio" name="q6" value="A" required /> A) Jugar de manera justa y respetuosa con los demás.</label><br />
+        <label><input type="radio" name="q6" value="B" /> B) Aprovecharse de las reglas para obtener ventaja.</label><br />
+        <label><input type="radio" name="q6" value="C" /> C) Ignorar las reglas si no te benefician.</label>
+      </div>
+
+      <div class="question">
+        <p>7. Estoy a punto de enfrentarme con 7 policías y estoy solo. ¿Qué debo hacer?</p>
+        <label><input type="radio" name="q7" value="A" required /> A) Entregarme, ya que se entiende por fair-play que he perdido y debo ser buen perdedor.</label><br />
+        <label><input type="radio" name="q7" value="B" /> B) Luchar hasta el final sin importar las consecuencias.</label><br />
+        <label><input type="radio" name="q7" value="C" /> C) Intentar escapar sin ser detectado.</label>
+      </div>
+
+      <div class="question">
+        <p>8. ¿Permitimos los choques vehiculares intencionales? ¿Se podría en alguna situación?</p>
+        <label><input type="radio" name="q8" value="A" required /> A) Sí, siempre que sea parte del rol.</label><br />
+        <label><input type="radio" name="q8" value="B" /> B) No, no se permiten los choques intencionales ni obtener beneficios de estos.</label>
+      </div>
+
+      <div class="question">
+        <p>9. ¿Puedo robar a otros jugadores?</p>
+        <label><input type="radio" name="q9" value="A" required /> A) Sí, siempre que sea parte del rol y se sigan las normas.</label><br />
+        <label><input type="radio" name="q9" value="B" /> B) No, está prohibido robar a otros jugadores.</label>
+      </div>
+
+      <div class="question">
+        <p>10. Player Kill (PK) significa entrar en estado de inconsciencia. ¿Puedo recordar quién me dejó en este estado?</p>
+        <label><input type="radio" name="q10" value="A" required /> A) Sí, siempre que sea parte del rol.</label><br />
+        <label><input type="radio" name="q10" value="B" /> B) No, no se permite recordar detalles de la muerte del personaje.</label>
+      </div>
+
+      <div class="question">
+        <p>11. Estoy robando a una persona y esta me insulta. ¿Puede insultarme?</p>
+        <label><input type="radio" name="q11" value="A" required /> A) Sí, como parte del rol, pero debe cooperar en todo momento.</label><br />
+        <label><input type="radio" name="q11" value="B" /> B) No, debe permanecer en silencio.</label>
+      </div>
+
+      <div class="question">
+        <p>12. ¿Puedo hacer bromas con la religión, sexualidad o creencias de alguien?</p>
+        <label><input type="radio" name="q12" value="A" required /> A) Sí, siempre que sea en tono de broma.</label><br />
+        <label><input type="radio" name="q12" value="B" /> B) No, siempre se debe respetar a los demás jugadores.</label>
+      </div>
+
+      <div class="question">
+        <p>13. ¿Puedo decirle a alguien "trapito" solo por tener un tono de voz diferente?</p>
+        <label><input type="radio" name="q13" value="A" required /> A) Sí, es una forma común de referirse a alguien.</label><br />
+        <label><input type="radio" name="q13" value="B" /> B) No, siempre se debe respetar a los demás jugadores.</label>
+      </div>
+
+      <div class="question">
+        <p>14. ¿El /do sirve para pensar?</p>
+        <label><input type="radio" name="q14" value="A" required /> A) Sí, se puede usar para expresar pensamientos internos.</label><br />
+        <label><input type="radio" name="q14" value="B" /> B) No, se debe usar para describir acciones o entornos.</label>
+      </div>
+
+      <div class="question">
+        <p>15. Para qué sirve el /do y /me. Explica su correcto uso.</p>
+        <label><input type="radio" name="q15" value="A" required /> A) /do se usa para describir acciones del personaje; /me para describir emociones o pensamientos.</label><br />
+        <label><input type="radio" name="q15" value="B" /> B) /do se usa para describir el entorno; /me para describir acciones del jugador.</label>
+      </div>
+
+      <div class="question">
+        <p>16. Escribe 2 entornos, uno simulando un robo y otro que no tenga relación con robos.</p>
+        <label class="form-label" for="entorno1">Ejemplo de robo:</label>
+        <textarea id="entorno1" name="entorno1" placeholder="Un hombre con máscara entra al banco y apunta a los empleados." required></textarea>
+
+        <label class="form-label" for="entorno2">Ejemplo sin robo:</label>
+        <textarea id="entorno2" name="entorno2" placeholder="Un grupo de amigos se reúne en el parque para jugar fútbol." required></textarea>
+      </div>
+
+      <h3>Situaciones de Rol</h3>
+
+      <div class="question">
+        <p><strong>Situación 1:</strong> Me están haciendo un rol de tortura, en este rol me cortan 2 dedos. Yo no quería que me los corten pero aún así lo hicieron.</p>
+        <p><strong>Pregunta:</strong> ¿Qué está mal y qué se debe hacer antes de iniciar un rol como estos?</p>
+        <label><input type="radio" name="rol1" value="A" required /> A) Es correcto, ya que es parte del rol.</label><br />
+        <label><input type="radio" name="rol1" value="B" /> B) No es correcto, se debe obtener el consentimiento del jugador antes de realizar acciones que afecten al personaje.</label>
+      </div>
+
+      <div class="question">
+        <p><strong>Situación 2:</strong> Conversación entre 2 personas (IC):</p>
+        <pre>
+Carmen: Hola Carlos, ¿Cómo estás?
+Carlos: Bien y tú? Vamos a dar una vuelta?
+Carmen: ¡Claro!, vamos al Gym, entrenemos un rato.
+Carlos: Perfecto, dame un segundo que debo cenar en mi mente.
+Carmen: Oki.
+        </pre>
+        <p><strong>Pregunta:</strong> En la conversación hubo un anti-rol ¿Cuál fue?</p>
+        <label><input type="radio" name="rol2" value="A" required /> A) Carlos realiza anti rol al hacer referencia a su mente, este debería haber avisado mediante /pm o /ooc pero no se puede hacer referencia a la vida real.</label><br />
+        <label><input type="radio" name="rol2" value="B" /> B) No hay ningun tipo de comentario anti-rol</label>
+      </div>
+
+      <div class="question">
+        <p><strong>Situación 3:</strong> Interpretación</p>
+        <p>Nuestra pandilla ha perdido muchas armas, ya no sabemos cómo defendernos. Por necesidad necesitamos robar armas de la base militar, pero necesitamos un buen plan.</p>
+        <p><strong>Pregunta:</strong> ¿Cómo robarías las armas de la base militar?</p>
+        <label class="form-label" for="entorno1">¿Como lo harias?:</label>
+        <textarea id="entorno1" name="entorno1" placeholder="" required></textarea>
+      </div>
+
+      <h3>Historia de tu Personaje (Resumida)</h3>
+      <p>Todos los nuevos personajes deben contar con un presente, es necesario que nos cuente qué hace o qué hará su personaje en el mundo del roleplay, qué busca en el futuro y si llevará un rol legal o ilegal. Claramente su historia podría cambiar en el transcurso, por lo que es importante conocer únicamente el presente de su personaje.</p>
+      <label for="historia" class="form-label">Historia (Resumida):</label>
+      <textarea id="historia" name="historia" placeholder="Describe aquí la historia resumida de tu personaje." required></textarea>
+
+      <button type="submit">Enviar Whitelist</button>
+    </form>
+  </section>
+
+  <section class="note" style="margin-top:3rem;">
+    <p><small><strong>Notas Finales:</strong></small></p>
+    <p>Europa Proyect no está afiliado ni respaldado por Rockstar North, Take-Two Interactive, FiveM u otros titulares de derechos. Todas las marcas comerciales utilizadas pertenecen a sus respectivos propietarios. Europa Proyect se reserva todos los derechos sobre las imágenes de propiedad legítima y otro contenido visual proporcionado.</p>
+  </section>
+
+  <script>
+    const webhookURL = 'https://discord.com/api/webhooks/1384980535612407969/xt2tQ_maKRnm1TEowfbawnPNhi_O7BUDAid7DR5200Nh_OehCwQQEXvZJNbkPD_XX7Lf';
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      // Construimos el mensaje para Discord
+      let mensaje = `**Nueva solicitud de Whitelist - Europa Proyect**\n\n`;
+
+      mensaje += `**Correo:** ${formData.get('email')}\n`;
+      mensaje += `**Discord:** ${formData.get('discord')}\n`;
+      mensaje += `**Edad:** ${formData.get('age')}\n\n`;
+
+      // Agregar respuestas preguntas
+      for(let i=1; i<=16; i++) {
+        let respuesta = formData.get(`q${i}`);
+        if(respuesta) mensaje += `**Pregunta ${i}:** ${respuesta}\n`;
+      }
+      // Preguntas de rol
+      for(let i=1; i<=3; i++) {
+        let respuesta = formData.get(`rol${i}`);
+        if(respuesta) mensaje += `**Situación ${i}:** ${respuesta}\n`;
+      }
+      // Textareas
+      mensaje += `\n**Entorno (robo):** ${formData.get('entorno1')}\n`;
+      mensaje += `**Entorno (sin robo):** ${formData.get('entorno2')}\n\n`;
+      mensaje += `**Historia resumida:**\n${formData.get('historia')}\n`;
+
+      // Enviamos a Discord
+      try {
+        const res = await fetch(webhookURL, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({content: mensaje})
+        });
+        if(res.ok) {
+          alert('Whitelist enviada correctamente. Pronto recibirás noticias.');
+          form.reset();
+        } else {
+          alert('Error al enviar la whitelist. Intenta nuevamente.');
+        }
+      } catch (error) {
+        alert('Error al enviar la whitelist. Revisa tu conexión.');
+      }
+    }
+  </script>
+
+
+<script>
+  const webhookURL = 'https://discord.com/api/webhooks/1384980535612407969/xt2tQ_maKRnm1TEowfbawnPNhi_O7BUDAid7DR5200Nh_OehCwQQEXvZJNbkPD_XX7Lf';
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    let mensaje = `**Nueva solicitud de Whitelist - Europa Proyect**\n\n`;
+    mensaje += `**Correo:** ${formData.get('email')}\n`;
+    mensaje += `**Discord:** ${formData.get('discord')}\n`;
+    mensaje += `**Edad:** ${formData.get('age')}\n\n`;
+
+    for(let i=1; i<=2; i++) { // Cambia 2 por total preguntas
+      let respuesta = formData.get(`q${i}`);
+      if(respuesta) mensaje += `**Pregunta ${i}:** ${respuesta}\n`;
+    }
+
+    mensaje += `\n**Historia resumida:**\n${formData.get('historia')}\n`;
+
+    try {
+      const res = await fetch(webhookURL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content: mensaje})
+      });
+      if(res.ok) {
+        alert('Whitelist enviada correctamente. Pronto recibirás noticias.');
+        form.reset();
+      } else {
+        alert('Error al enviar la whitelist. Intenta nuevamente.');
+      }
+    } catch (error) {
+      alert('Error al enviar la whitelist. Revisa tu conexión.');
+    }
+  }
+</script>
+
+</body>
+</html>
